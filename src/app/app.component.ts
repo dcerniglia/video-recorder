@@ -20,8 +20,7 @@ export class AppComponent implements OnDestroy {
       navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
         const _video = this.video.nativeElement;
         _video.srcObject = ms;
-        _video.load();
-        _video.play();
+        this.video.nativeElement.onloadedmetadata = () => _video.play();
         this.isRecording = true;
       });
     }
