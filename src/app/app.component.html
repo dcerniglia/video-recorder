@@ -1,8 +1,10 @@
 <div class="flex flex-col items-center justify-center h-screen bg-secondary">
-  <video #video class="bg-white rounded-lg shadow-lg p-6">
+  <video #video 
+         class="bg-slate-400 rounded-lg shadow-lg p-6"
+         poster="./../assets/header-image.png">
   </video>
   <div class="flex justify-center mt-4">
-    <button class="bg-green-700 text-white font-semibold py-2 px-4 rounded-full mr-4"(click)="onStart()">Record</button>
-    <button class="bg-red-700 text-white font-semibold py-2 px-4 rounded-full mr-4"(click)="onStop()">Stop</button>
+    <button *ngIf="!isRecording" class="bg-green-700 text-white font-semibold py-2 px-4 rounded-full mr-4"(click)="onStart()">Record</button>
+    <button *ngIf="isRecording" class="bg-red-700 text-white font-semibold py-2 px-4 rounded-full mr-4"(click)="onStop()">Stop</button>
   </div>
 </div>

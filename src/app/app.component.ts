@@ -8,6 +8,8 @@ import { Component, ElementRef, Inject, OnDestroy, PLATFORM_ID, ViewChild } from
 })
 export class AppComponent implements OnDestroy {
   title = 'video-recorder';
+  isRecording = false;
+
   @ViewChild('video', {static: true}) video: ElementRef<HTMLVideoElement>;
 
 
@@ -18,12 +20,14 @@ export class AppComponent implements OnDestroy {
       navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
         const _video = this.video.nativeElement;
         _video.srcObject = ms;
+        this.isRecording = true;
         _video.play(); 
       });
     }
   }
 
   onStop() {
+    this.isRecording = false;
     this.video.nativeElement.pause();
     (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
     this.video.nativeElement.srcObject = null;
